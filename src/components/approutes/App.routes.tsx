@@ -10,6 +10,7 @@ export function AppRoutes() {
       <Routes>
         <Route path="/" element={<Home></Home>}></Route>
         <Route path="/user" element={<List></List>}></Route>
+        <Route path="/friend"></Route>
       </Routes>
     </Suspense>
   );

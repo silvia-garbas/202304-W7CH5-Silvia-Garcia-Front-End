@@ -11,7 +11,7 @@ export default function List() {
 
   return (
     <>
-      <h1>People</h1>
+      <h1>Usuarios registrados en la red social:</h1>
       <ul>
         {users.map((item) => (
           <Profile item={item} key={item.userName}></Profile>
