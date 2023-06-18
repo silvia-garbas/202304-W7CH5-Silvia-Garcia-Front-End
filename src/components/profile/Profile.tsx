@@ -7,6 +7,7 @@ export function Profile({ item }: PropsType) {
   return (
     <li>
       <a>{item.userName}</a>
+   
     </li>
   );
 }
