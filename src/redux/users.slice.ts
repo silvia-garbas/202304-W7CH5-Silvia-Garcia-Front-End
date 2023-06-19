@@ -1,15 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { User } from "../models/user";
-import { loadUsersAsync, registerUserAsync } from "./thunk";
+import { loadUsersAsync, loginUserAsync, registerUserAsync } from "./thunk";
 
 export type UsersState = {
   users: User[];
-  currentUser: User | null;
+  currentUser: User;
 };
 
 const initialState = {
   users: [] as User[],
-  currentUser: null,
+  currentUser: {} as Partial<User>,
 };
 
 const sliceUsers = createSlice({
@@ -25,6 +25,11 @@ const sliceUsers = createSlice({
     builder.addCase(loadUsersAsync.fulfilled, (state, { payload }) => ({
       ...state,
       users: payload,
+    }));
+
+    builder.addCase(loginUserAsync.fulfilled, (state, { payload }) => ({
+      ...state,
+      currentUser: payload,
     }));
   },
 });

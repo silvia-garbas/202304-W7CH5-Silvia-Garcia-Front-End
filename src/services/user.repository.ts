@@ -7,7 +7,7 @@ export class UserRepository extends ApiRepository<User> {
     super(url);
   }
 
-  async getAll(): Promise<User[]> {
+  async getAllUsers(): Promise<User[]> {
     const response = await fetch(this.url);
     if (!response.ok) {
       const message = `Error: ${response.status}. ${response.statusText}`;
@@ -18,8 +18,17 @@ export class UserRepository extends ApiRepository<User> {
   }
 
   async register(item: Partial<User>): Promise<User> {
-    const response = await fetch(this.url + "register", {
+    const response = await fetch(this.url + "register/", {
       method: "POST",
+      body: JSON.stringify(item),
+      headers: { "Content-Type": "application/json" },
+    });
+    return response.json() as Promise<User>;
+  }
+
+  async login(item: Partial<User>): Promise<User> {
+    const response = await fetch(this.url + "login/", {
+      method: "PATCH",
       body: JSON.stringify(item),
       headers: { "Content-Type": "application/json" },
     });
